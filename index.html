@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>DC · Nov 3–7</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="DC Nov">
+<meta name="theme-color" content="#111418">
+<meta name="robots" content="noindex, nofollow">
+
+<style>
+:root{--bg:#fff;--fg:#111418;--muted:#4a525c;--line:#cfd5dc;--pri:#0b57d0;--pri-fg:#fff;--chk-bg:#fff1cc;--chk-fg:#6b4500;--soft:#f3f5f8;--ok:#0d6b3a}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.wrap{max-width:560px;margin:0 auto;padding:8px 16px 40px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding:6px 0;border-bottom:1px solid var(--line)}
+.hrow{display:flex;align-items:center;gap:10px}
+h1{font-size:20px;margin:0}
+.seg{display:flex;gap:6px;flex:1}
+.seg button{flex:1;font:600 15px/1 inherit;min-height:44px;border:2px solid var(--fg);border-radius:10px;background:var(--bg);color:var(--fg);padding:0 4px}
+.seg button[aria-pressed=true]{background:var(--fg);color:var(--bg)}
+details summary{cursor:pointer;font-weight:600;min-height:44px;display:flex;align-items:center}
+details.box{margin:10px 0;border:1px solid var(--line);border-radius:10px;padding:0 12px}
+details.box ul{margin:0 0 10px;padding-left:18px;display:flex;flex-direction:column;gap:6px}
+.intro{margin:12px 0 4px;color:var(--muted);font-size:15px}
+h2{font-size:17px;margin:18px 0 6px}
+.leg{font-size:15px;font-weight:600;padding:10px 0 8px 14px;border-left:3px solid var(--line);margin-left:20px}
+.stop{border:1px solid var(--line);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:8px;margin-bottom:10px}
+.top{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.time{font-weight:700;font-size:18px;font-variant-numeric:tabular-nums;white-space:nowrap}
+h3{font-size:18px;margin:0}
+.why{margin:0}
+.addr{all:unset;box-sizing:border-box;display:block;min-height:36px;padding:6px 0;color:var(--muted);font-size:15px;cursor:pointer}
+.addr .hint{font-size:12px;opacity:.8;white-space:nowrap}
+.chk{display:inline-block;font-size:12px;font-weight:600;background:var(--chk-bg);color:var(--chk-fg);border-radius:6px;padding:1px 6px;white-space:nowrap}
+.tag{display:inline-block;font-size:12px;font-weight:700;border:1px solid var(--muted);color:var(--muted);border-radius:6px;padding:0 6px;margin-right:4px;white-space:nowrap}
+.tag.g{border-color:var(--ok);color:var(--ok)}
+.btns{display:flex;flex-wrap:wrap;gap:8px}
+.btn{flex:1 1 auto;min-height:46px;display:inline-flex;align-items:center;justify-content:center;padding:0 14px;border:1.5px solid var(--line);border-radius:10px;color:var(--fg);background:var(--bg);font:600 15px/1.1 inherit;text-decoration:none;text-align:center}
+.btn.pri{background:var(--pri);border-color:var(--pri);color:var(--pri-fg)}
+.call{color:var(--pri);font-weight:600;font-size:15px;text-decoration:none}
+.opt{background:var(--soft);border-radius:10px;padding:10px;margin-top:8px;display:flex;flex-direction:column;gap:6px}
+.opt h4{font-size:16px;margin:0}
+.list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.list li{border-bottom:1px solid var(--line);padding-bottom:10px}
+.list b{display:block}
+.meta{color:var(--muted);font-size:14px}
+.wx{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin:6px 0 10px;text-align:center;font-size:14px}
+.wx div{background:var(--soft);border-radius:8px;padding:6px 2px}
+.wx b{display:block}
+footer{color:var(--muted);font-size:13px;margin-top:24px}
+footer a{color:var(--muted)}
+.toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 20px);transform:translateX(-50%);background:var(--fg);color:var(--bg);padding:10px 14px;border-radius:10px;font-weight:600}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--pri);outline-offset:2px}
+.steps{margin:.4em 0 0;padding-left:1.3em}.steps li{margin:.3em 0}
+.seg{gap:4px}.seg button{font-size:14px;white-space:nowrap;padding:0 2px}
+.ck{list-style:none;margin:0 0 6px;padding:0}
+.ck li{border-bottom:1px solid var(--line)}
+.ck label{display:flex;gap:10px;align-items:flex-start;min-height:44px;padding:10px 0;cursor:pointer}
+.ck input{width:22px;height:22px;flex:none;margin:1px 0 0;accent-color:var(--pri)}
+.ck input:checked+span{color:var(--muted);text-decoration:line-through}
+.ck small{display:block;color:var(--muted);font-size:13px}
+.flt{background:var(--soft);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:15px}
+.flt b{font-variant-numeric:tabular-nums}
+.tz{font-size:12px;font-weight:600;color:var(--muted)}
+.rot{width:100%;border-collapse:collapse;font-size:13px;margin:4px 0 10px}
+.rot th,.rot td{border-bottom:1px solid var(--line);padding:6px 4px;text-align:left;vertical-align:top}
+.rot thead th{font-size:12px;color:var(--muted)}
+.rot tbody th{font-weight:700;white-space:nowrap}
+.rot small{font-weight:400;color:var(--muted)}
+.nextup{display:flex;flex-direction:column;gap:4px;margin-top:6px}
+.nextup button{all:unset;box-sizing:border-box;display:block;cursor:pointer;border-radius:10px;padding:8px 12px;font-size:15px;line-height:1.3;min-height:44px}
+.nu-now{background:var(--fg);color:var(--bg);font-weight:600}
+.nu-next{background:var(--soft);color:var(--fg)}
+.nextup small{display:block;font-size:12px;font-weight:600;opacity:.75;letter-spacing:.02em;text-transform:uppercase}
+.stop,details.box{scroll-margin-top:170px}
+.stop.cur{outline:3px solid var(--pri);outline-offset:2px}
+</style></head><body>
+<div class="wrap">
+<header><div class="hrow"><h1>DC</h1><div class="seg" role="group" aria-label="Section">
+<button type="button" data-p="mon" aria-pressed="false">Mon</button>
+<button type="button" data-p="tue" aria-pressed="true">Tue</button>
+<button type="button" data-p="wed" aria-pressed="false">Wed</button>
+<button type="button" data-p="thu" aria-pressed="false">Thu–Sat</button>
+<button type="button" data-p="more" aria-pressed="false">More</button>
+</div></div>
+<div id="nextup" class="nextup" hidden><button type="button" class="nu-now"></button><button type="button" class="nu-next"></button></div></header>
+
+<details class="box"><summary>Weather · Tue–Sat</summary>
+<div class="wx">
+<div>Tue<b>73°</b>51°<br>10%</div>
+<div>Wed<b>75°</b>54°<br>5%</div>
+<div>Thu<b>74°</b>64°<br>30%</div>
+<div>Fri<b>69°</b>54°<br>75%</div>
+<div>Sat<b>63°</b>48°<br>0%</div>
+</div>
+<ul><li>Warm for November through Thursday: shirt-sleeve weather Wednesday.</li><li>Friday looks wet: umbrella, and skip the open-air Water Park for dinner.</li><li>Forecast as of Sunday night; check again Tuesday. What to wear is on each day’s tab.</li></ul>
+</details>
+
+<details class="box"><summary>Base camp</summary>
+<ul>
+<li>Hotel: in Crystal City. Save it as “Hotel” in Uber and Apple Maps before you leave.</li>
+<li>Meeting: 251 18th St S. Most dinner spots below are within a few minutes’ walk.</li>
+<li>Metro: Crystal City station (Blue/Yellow). The Blue Line runs direct to McPherson Sq; the Yellow Line direct to Gallery Place/Chinatown.</li>
+<li>Kennedy Center main theaters are closed. Glenstone is closed Wednesdays.</li>
+</ul>
+</details>
+
+<!-- MONDAY -->
+<section data-panel="mon" hidden>
+<p class="intro">Shop, print, pack, early night. Tick items off as you go; the boxes remember on this phone.</p>
+
+<h2>Shopping list <span class="meta">Sprouts + Target</span></h2>
+<details class="box" open><summary>Food bag (carry-on)</summary>
+<ul class="ck"><li><label><input type="checkbox" data-k="Dry-roasted edamame"><span>Dry-roasted edamame<small>Seapoint Farms. Best protein per ounce.</small></span></label></li><li><label><input type="checkbox" data-k="Roasted chickpeas or fava beans"><span>Roasted chickpeas or fava beans<small>Biena or Saffron Road</small></span></label></li><li><label><input type="checkbox" data-k="Pistachios in shell"><span>Pistachios in shell<small>Shelling slows you down, which is the point.</small></span></label></li><li><label><input type="checkbox" data-k="2 GoMacro or Aloha bars"><span>2 GoMacro or Aloha bars</span></label></li><li><label><input type="checkbox" data-k="Apple or firm pear"><span>Apple or firm pear<small>For the IAD leg</small></span></label></li><li><label><input type="checkbox" data-k="2 Justin’s nut butter squeeze packs"><span>2 Justin’s nut butter squeeze packs<small>Count as a gel: quart bag</small></span></label></li><li><label><input type="checkbox" data-k="Small bar of 85% dark chocolate"><span>Small bar of 85% dark chocolate</span></label></li></ul>
+</details>
+<details class="box" open><summary>Water, clean, sleep</summary>
+<ul class="ck"><li><label><input type="checkbox" data-k="Nuun Sport tablets (or LMNT)"><span>Nuun Sport tablets (or LMNT)<small>One per leg, one at home</small></span></label></li><li><label><input type="checkbox" data-k="Empty 1L bottle"><span>Empty 1L bottle<small>Fill after security, again at DEN</small></span></label></li><li><label><input type="checkbox" data-k="Disinfecting wipes, travel pack"><span>Disinfecting wipes, travel pack<small>Seat on both flights, then the hotel room (routine on the Tue tab). Wipes are fine in carry-on.</small></span></label></li><li><label><input type="checkbox" data-k="Small hand sanitizer"><span>Small hand sanitizer<small>Under 3.4 oz</small></span></label></li><li><label><input type="checkbox" data-k="Lip balm + saline nasal spray"><span>Lip balm + saline nasal spray<small>Cabin air is dry; two flights back to back</small></span></label></li><li><label><input type="checkbox" data-k="Eye mask, earplugs, melatonin"><span>Eye mask, earplugs, melatonin<small>Check you have them</small></span></label></li></ul>
+</details>
+<details class="box" open><summary>For Wednesday + Friday</summary>
+<ul class="ck"><li><label><input type="checkbox" data-k="Silicone strap-on handlebar phone mount"><span>Silicone strap-on handlebar phone mount<small>DC’s bikeshare bikes don’t have them; a bike shop or REI should have one</small></span></label></li><li><label><input type="checkbox" data-k="Tote or crossbody for the review folder"><span>Tote or crossbody for the review folder</span></label></li><li><label><input type="checkbox" data-k="Sunglasses"><span>Sunglasses<small>You ride east into low sun</small></span></label></li><li><label><input type="checkbox" data-k="Compact umbrella"><span>Compact umbrella<small>Friday is 75% rain</small></span></label></li></ul>
+</details>
+
+<h2>Pack</h2>
+<details class="box" open><summary>Outfit rotation</summary>
+<table class="rot"><thead><tr><th></th><th>Pants</th><th>Shirt</th><th>Shoes</th><th>Layer</th></tr></thead><tbody>
+<tr><th>Tue<br><small>plane</small></th><td>Navy MoS</td><td>Your pick</td><td>Desert boots</td><td>Olive chore coat</td></tr>
+<tr><th>Wed<br><small>town</small></th><td>Black jeans</td><td>Oxford</td><td>Desert boots</td><td>Olive chore coat</td></tr>
+<tr><th>Thu<br><small>meetings</small></th><td>Black jeans</td><td>White</td><td>Desert boots</td><td>Blazer</td></tr>
+<tr><th>Fri<br><small>meetings, rain</small></th><td>Green chinos</td><td>Blue oxford</td><td>Courtsides</td><td>Blazer + umbrella</td></tr>
+<tr><th>Sat<br><small>plane</small></th><td>Navy MoS</td><td>Fresh one</td><td>Desert boots</td><td>Olive chore coat</td></tr>
+</tbody></table>
+<ul>
+<li><b>The rules it follows:</b> black jeans only with the boots; green chinos only on a meeting day; Courtsides only with navy or green.</li>
+<li><b>Why boots Thursday, Courtsides Friday:</b> Friday is the 75% rain day, and the leather Courtsides handle wet pavement better than suede and crepe.</li>
+<li><b>If you’d rather spread the wear:</b> Wednesday in navy MoS + oxford + <b>Courtsides</b> + olive chore coat. The stretch pants are good on the bike, the boots get a day off, and the black jeans stay fresh for Thursday.</li>
+<li><b>Black-on-black option for Wednesday:</b> black chore coat + white shirt with the black jeans and boots. Costs you a second chore coat in the bag.</li>
+</ul></details>
+<details class="box" open><summary>Pack (rotation above)</summary><ul class="ck"><li><label><input type="checkbox" data-k="Wear on the plane"><span>Wear on the plane<small>Navy MoS pants, desert boots, olive chore coat</small></span></label></li><li><label><input type="checkbox" data-k="Navy cashmere blazer"><span>Navy cashmere blazer<small>Fold lining-out, on top in the overhead, or wear it</small></span></label></li><li><label><input type="checkbox" data-k="Shirts: oxford for Wed, white, blue oxfo"><span>Shirts: oxford for Wed, white, blue oxford, one for Sat</span></label></li><li><label><input type="checkbox" data-k="Black jeans + green chinos"><span>Black jeans + green chinos</span></label></li><li><label><input type="checkbox" data-k="AE Courtsides"><span>AE Courtsides<small>Friday, and the gym (see Thu–Sat tab)</small></span></label></li><li><label><input type="checkbox" data-k="Black chore coat"><span>Black chore coat<small>Only if you want the black-on-black Wednesday</small></span></label></li><li><label><input type="checkbox" data-k="Plain tees, socks, sleep stuff"><span>Plain tees, socks, sleep stuff</span></label></li><li><label><input type="checkbox" data-k="Tote or crossbody"><span>Tote or crossbody</span></label></li></ul></details>
+
+<h2>Do tonight</h2>
+<details class="box" open><summary>Desk + phone</summary>
+<ul class="ck"><li><label><input type="checkbox" data-k="Print the peer reviews, into a folder"><span>Print the peer reviews, into a folder</span></label></li><li><label><input type="checkbox" data-k="United app: notifications on, check both"><span>United app: notifications on, check both seat assignments<small>Economy Plus; aisle on the 3-hr IAD leg makes standing easy</small></span></label></li><li><label><input type="checkbox" data-k="Flighty: both trips imported"><span>Flighty: both trips imported<small>It syncs from TripIt. Turn on Connection Assistant for Denver.</small></span></label></li><li><label><input type="checkbox" data-k="Screenshot both boarding passes + hotel "><span>Screenshot both boarding passes + hotel confirmation</span></label></li><li><label><input type="checkbox" data-k="Capital Bikeshare app: account + card se"><span>Capital Bikeshare app: account + card set up<small>So Wed morning is just scan and go</small></span></label></li><li><label><input type="checkbox" data-k="Uber + Uber Eats: hotel saved"><span>Uber + Uber Eats: hotel saved<small>Saved as “Hotel”</small></span></label></li><li><label><input type="checkbox" data-k="Charge power bank, earbuds; download pod"><span>Charge power bank, earbuds; download podcasts<small>Power bank goes in carry-on, never checked</small></span></label></li></ul>
+</details>
+<details class="box" open><summary>Body</summary>
+<ul class="ck"><li><label><input type="checkbox" data-k="No hard ride today or tomorrow"><span>No hard ride today or tomorrow</span></label></li><li><label><input type="checkbox" data-k="Bed 30–60 min earlier than usual"><span>Bed 30–60 min earlier than usual<small>Starts the shift east; DC is 3 hours ahead</small></span></label></li><li><label><input type="checkbox" data-k="Lay out Tuesday’s clothes + Wednesday’s "><span>Lay out Tuesday’s clothes + Wednesday’s ride outfit<small>MoS pants + desert boots; black jeans, oxford, chore coat</small></span></label></li></ul>
+</details>
+</section>
+
+<!-- TUESDAY -->
+<section data-panel="tue">
+<p class="intro">Travel day. Set your watch to DC time when you board at SBA and live on it from there. Dinner in Denver is dinner on DC time.</p>
+
+<div class="flt"><div class="meta">Flight numbers, times and gates are in the United app and Flighty.</div></div>
+
+<details class="box"><summary>Wear today</summary><ul><li><b>Navy MoS pants</b>, <b>desert boots</b>, <b>olive chore coat</b>. DC is ~55° at night and the cabin runs cold.</li></ul></details>
+<article class="stop" id="s-tue-home">
+<div class="top"><span class="time">Morning</span><h3>Home</h3></div>
+<ul class="steps">
+<li>Up ~1 hr earlier than usual; get outside in daylight within the first hour.</li>
+<li><b>Big breakfast:</b> oats cooked in milk + 2 tbsp PB + chia + banana, 2–3 eggs. 16 oz water + Nuun #1.</li>
+<li><b>Coffee now, and last caffeine by noon PT</b> (3pm in DC).</li>
+<li>10 min mobility: half-kneeling hip flexor 45s/side, pigeon or figure-four 90s/side, glute bridges ×15, wall calf 30s/side.</li>
+<li>Light lunch before you leave: protein + veg. Not salty.</li>
+</ul>
+</article>
+
+<div class="leg">↓ At SBA about an hour before departure. Small airport.</div>
+<article class="stop" id="s-tue-sba">
+<div class="top"><span class="time">Fly</span><h3>SBA → Denver</h3></div>
+<ul class="steps">
+<li>After security: fill the 1L bottle + Nuun #2.</li>
+<li>Seated: wipe tray table (both sides), armrests, seatbelt buckle, screen, window shade, air nozzle.</li>
+<li><b>Watch to ET.</b> GoMacro bar + edamame about an hour in.</li>
+<li>About a cup of water an hour. No alcohol on either leg; it dries you out and wrecks the first night’s sleep.</li>
+<li>Stand once mid-flight: calf raises and a quad pull in the galley.</li>
+</ul>
+</article>
+
+<div class="leg">↓ Land in Denver. Check the next gate in the United app.</div>
+<article class="stop" id="s-tue-den">
+<div class="top"><span class="time">Layover</span><h3>Denver: Shake Shack, then your gate</h3></div>
+<p class="why">If both gates are in Concourse B, this is a short walk with no train.</p>
+<ol class="steps">
+<li>Off the plane, turn toward the center of the concourse (follow “Train”).</li>
+<li>At the <b>Center Core</b> atrium, take the escalator up one level to the <b>Mezzanine</b>. Shake Shack is up there (open 7am–11pm).</li>
+<li><b>Order:</b> a single ShackBurger or Chick’n Shack, water. Skip the shake and the bar. Fries are your call; they’re the salty part.</li>
+<li>If the line is long, get it to go. Back down the escalator to your gate. Eat there.</li>
+<li>Refill the bottle at a filler near the core. 5 min of walking + standing figure-four at the gate before boarding.</li>
+</ol>
+<div class="btns"><a class="btn" href="https://www.flydenver.com/dine/shake-shack/">Shake Shack · DEN</a></div>
+</article>
+
+<div class="leg">↓ Board</div>
+<article class="stop" id="s-tue-den2">
+<div class="top"><span class="time">Fly</span><h3>Denver → Dulles</h3></div>
+<ul class="steps">
+<li>Wipe the seat area again. Nuun #3 in the refilled bottle.</li>
+<li>It’s evening in DC: screen brightness down, eye mask if you want it. A nap is fine on this leg.</li>
+<li>Apple + pistachios only if hungry.</li>
+<li>Stand once. Before landing: shoes on, bag zipped, Uber Eats open.</li>
+</ul>
+</article>
+
+<div class="leg">↓ Land at Dulles. ~20 min gate to curb.</div>
+<article class="stop" id="s-tue-iad">
+<div class="top"><span class="time">Land</span><h3>Dulles: gate → Uber</h3></div>
+<ol class="steps">
+<li>From your gate, follow signs to the <b>AeroTrain</b>.</li>
+<li>Ride to the <b>Main Terminal</b>. <b>Order Kabob Palace on the train.</b></li>
+<li>Follow signs to Arrivals/Baggage Claim, then “Ride App Pickup”: out Doors 2, 4 or 6 to the third curb, zones 3A–3H. Match the zone in the Uber app.</li>
+<li>Ride to Crystal City ~35–45 min. <b>Melatonin in the car.</b></li>
+</ol>
+</article>
+
+<div class="leg">↓ Hotel. Wipe down while the food’s on its way.</div>
+<article class="stop" id="s-tue-kabob">
+<div class="top"><span class="time">Late</span><h3>Kabob Palace</h3></div>
+<p class="why"><b>Keep it small:</b> Shake Shack was dinner on DC time, and a big meal this late costs sleep. One kubideh plate with chickpeas and extra green sauce; save half for Wednesday breakfast. 24/7 Afghan kabob counter. Order from the counter at <b>2315</b> (the 24-hour one), not the sit-down at 2318.</p>
+<button class="addr" type="button" data-copy="2315 S Eads St, Arlington, VA 22202">2315 S Eads St, Arlington <span class="hint">tap to copy</span></button>
+<div class="btns"><a class="btn pri" href="https://www.ubereats.com/store/kabob-palace-crystal-city/EcKPdpxtQCKD8fgNzzRfMA">Uber Eats</a><a class="btn" href="https://maps.apple.com/?daddr=2315%20S%20Eads%20St%2C%20Arlington%2C%20VA%2022202&dirflg=w">Walk from hotel</a></div>
+<details><summary>Backups (2)</summary>
+<div class="opt"><h4>Tortas y Tacos La Chiquita</h4><p class="why">24 hours. Birria tacos with consommé, carne asada. Better in person than delivered. Stop on the way in if you’re hungry.</p>
+<button class="addr" type="button" data-copy="2911 Columbia Pike, Arlington, VA 22204">2911 Columbia Pike, Arlington <span class="hint">tap to copy</span></button>
+<a class="call" href="tel:+15719702824">Call 571-970-2824</a></div>
+<div class="opt"><h4>Bob &amp; Edith’s, Columbia Pike</h4><p class="why">The original 24-hour diner. Sit-down only; delivery has been unavailable. The Crystal City location closes at 10pm on Tuesdays.</p>
+<button class="addr" type="button" data-copy="2310 Columbia Pike, Arlington, VA 22204">2310 Columbia Pike, Arlington <span class="hint">tap to copy</span></button>
+<a class="call" href="tel:+17039206103">Call 703-920-6103</a></div>
+</details>
+</article>
+
+<details class="box"><summary>Hotel room wipe-down (3 min)</summary><ul>
+<li>TV remote, then light and lamp switches</li>
+<li>Door handles: room (both sides), bathroom, closet</li>
+<li>Thermostat, phone, alarm clock, safe keypad</li>
+<li>Faucet handles, toilet handle and seat</li>
+<li>Desk, nightstand, coffee-maker handle, hair dryer handle</li>
+<li>Ice bucket: wipe it or use the liner</li>
+</ul></details>
+
+<details class="box"><summary>Jet lag plan (3 hours east)</summary><ul>
+<li><b>Tue:</b> lights out right after you eat. Alarm 7:30 ET Wednesday, however you slept.</li>
+<li><b>Wed morning:</b> bright outdoor light early is what moves your clock. The bike ride is that dose, so go outside rather than sit in the room.</li>
+<li><b>Caffeine</b> fine in the morning, none after ~2pm ET. <b>Naps</b> 20 min max, before 3pm.</li>
+<li><b>Melatonin</b> (your usual) 45 min before an 11pm ET bedtime Wed and Thu. Your clock should be close to DC time by Thursday’s meetings.</li>
+<li><b>Beer</b> Wed is fine; last one 2–3 hrs before bed.</li>
+</ul></details>
+
+<details class="box"><summary>If you miss the Denver connection</summary><ul>
+<li>The United app usually rebooks automatically; check it before queuing at a desk.</li>
+<li>The app shows any later flight to IAD or DCA that night, including a red-eye.</li>
+<li>If you’re stuck overnight, the first morning flights to IAD or DCA still get you in for Wednesday. DCA is 5 min from the hotel.</li>
+</ul></details>
+</section>
+
+<!-- WEDNESDAY -->
+<section data-panel="wed" hidden>
+<p class="intro">Coffee and peer reviews, the Folger, a sandwich, then loose. By bike if the weather holds (75°, dry). Sunset is ~5pm now that the clocks have changed, so plan the ride home by then.</p>
+
+<details class="box"><summary>Wear today · 54° → 75°, dry</summary><ul><li><b>Black jeans</b>, <b>oxford</b>, <b>desert boots</b>, <b>olive chore coat</b>. Coat in the bike basket by noon, back on after 5.</li><li>Or, to spread the wear: <b>navy MoS</b> + oxford + <b>Courtsides</b>. Good stretch for the bike.</li><li><b>Sunglasses</b>, and a tote or crossbody for the review folder.</li></ul></details>
+
+
+<details class="box"><summary>Bikeshare plan: day pass + e-bike</summary><ul>
+<li><b>Your bike legs:</b> hotel → Peregrine (~5 mi, ~35 min on an e-bike), Capitol Hill → Union Market (~10 min), Union Market → Portrait Gallery (~10 min). Then Metro home.</li>
+<li><b>Buy the day pass</b> in the Capital Bikeshare app ($10). With e-bikes for all three legs (~55 min at $0.15/min) the day comes to about <b>$18</b>, vs. about $22 paying per ride.</li>
+<li>If you Metro in instead and only bike the two short hops, skip the pass: pay per ride (a few dollars).</li>
+<li><b>The ride in is easy on an e-bike</b>: flat riverside trail most of the way, then a gentle climb up Capitol Hill at the end. You won’t arrive sweaty (mid-50s at 9am). On a classic bike it’s ~40–45 min, close to the 45-min limit, so dock once on the Mall to reset.</li>
+<li>Check the app for an e-bike at the dock before you walk over; they aren’t at every station all the time.</li>
+<li>Prices from capitalbikeshare.com, Nov 1.</li>
+</ul></details>
+
+<details class="box"><summary>Ride in: route, navigation, what to wear</summary><ul>
+<li><b>Route</b> (~5.5 mi, ~35–40 min):<ol class="steps">
+<li>Crystal Dr north to the Water Park (look for the waterfall). The path on its south side tunnels under the tracks to the Mount Vernon Trail. Turn left (north).</li>
+<li>River trail past Gravelly Point, with planes very low overhead.</li>
+<li><b>New:</b> a ~¼-mile Long Bridge construction detour north of Gravelly Point (there through 2030). Narrower, with concrete barriers, and it crosses a construction road. Slow down and follow the signs.</li>
+<li>Up onto the 14th St Bridge path. It’s narrow and morning commuters pass fast, so keep right. Monument straight ahead.</li>
+<li>Off at the Jefferson Memorial, up to the Mall, east on <b>Madison Dr</b> (paved; skip the gravel paths).</li>
+<li>Around the south side of the Capitol, then the protected lanes on <b>Penn Ave SE</b> up the Hill. Dock at the Eastern Market Metro plaza, a block from Peregrine.</li>
+</ol></li>
+<li><b>Bike vs. Metro:</b> about the same door to door (~35–40 min either way). The Metro is mostly underground. Take it only if it’s raining or you’re late.</li>
+<li><b>App:</b> buy the day pass in the <b>Capital Bikeshare</b> app. The Lyft app also unlocks the same bikes, but buy the pass in Capital Bikeshare.</li>
+<li><b>No phone holder:</b> I found no sign that DC bikes have them (NYC’s Citi Bike is testing mounts on ~10% of its e-bikes). Options: Google Maps bike directions with voice in one earbud; a strap-on silicone handlebar mount from home; or phone in pocket and check at the stops below. If you have a watch, cycling directions can buzz you at each turn.</li>
+<li><b>Places to check your phone:</b> Water Park tunnel → Gravelly Point detour → bridge ramp → Jefferson Memorial → Madison Dr → Penn Ave SE.</li>
+<li><b>Wear:</b> see the box at the top of this tab. Sunglasses help: you ride east into the low sun.</li>
+</ul>
+<div class="btns"><a class="btn pri" href="https://www.google.com/maps/dir/?api=1&amp;destination=660%20Pennsylvania%20Ave%20SE%2C%20Washington%2C%20DC%2020003&amp;travelmode=bicycling&amp;waypoints=Thomas%20Jefferson%20Memorial%2C%20Washington%2C%20DC">Bike route (Google)</a><a class="btn" href="https://apps.apple.com/app/id1233403073">Bikeshare app</a></div></details>
+
+<div class="leg">↓ E-bike ~35–40 min along the river, or Metro Blue Line to Eastern Market (about the same door to door)</div>
+<article class="stop">
+<div class="top"><span class="time">9:00</span><h3>Peregrine Espresso</h3></div>
+<p class="why">DC’s serious espresso bar since 2008. Roasts its own (Small Planes) with rotating single origins; pastries from Bluebird Bakery. Weekdays 7–6. Do the reviews here; the Folger is a 7-min walk.</p>
+<button class="addr" type="button" data-copy="660 Pennsylvania Ave SE, Washington, DC 20003">660 Pennsylvania Ave SE <span class="hint">tap to copy</span></button>
+<div class="btns"><a class="btn pri" href="https://www.google.com/maps/dir/?api=1&amp;destination=660%20Pennsylvania%20Ave%20SE%2C%20Washington%2C%20DC%2020003&amp;travelmode=bicycling&amp;waypoints=Thomas%20Jefferson%20Memorial%2C%20Washington%2C%20DC">Bike</a><a class="btn" href="https://maps.apple.com/?daddr=660%20Pennsylvania%20Ave%20SE%2C%20Washington%2C%20DC%2020003&dirflg=r">Metro</a><a class="btn" href="https://m.uber.com/ul/?action=setPickup&amp;pickup=my_location&amp;dropoff%5Bformatted_address%5D=660%20Pennsylvania%20Ave%20SE%2C%20Washington%2C%20DC%2020003&amp;dropoff%5Bnickname%5D=Peregrine%20Espresso">Uber</a></div>
+<a class="call" href="tel:+12026294381">Call 202-629-4381</a>
+<details><summary>Alternative (1)</summary>
+<div class="opt"><h4>Dua DC Coffee</h4><p class="why">The best-rated cup in DC proper: each single origin from a different Indonesian island. Downtown, ~2 mi from the Folger. Wed 7:30–5.</p><button class="addr" type="button" data-copy="923 15th St NW, Washington, DC 20005">923 15th St NW <span class="hint">tap to copy</span></button><a class="call" href="tel:+12023474404">Call 202-347-4404</a></div>
+</details>
+</article>
+
+<div class="leg">↓ Walk 7 min</div>
+<article class="stop">
+<div class="top"><span class="time">11:00</span><h3>Folger: To Hear Her Speak</h3></div>
+<p class="why">Black women and Shakespeare across 400 years, ~100 objects, curated by Patricia Akhimie. Wed 11–6. Walk-ins welcome; a timed pass is recommended (pay what you will, suggested $15).</p>
+<button class="addr" type="button" data-copy="201 East Capitol St SE, Washington, DC 20003">201 East Capitol St SE <span class="hint">tap to copy</span></button>
+<div class="btns"><a class="btn pri" href="https://www.folger.edu/whats-on/to-hear-her-speak-black-women-and-shakespeare/">Timed pass</a><a class="btn" href="https://maps.apple.com/?daddr=201%20East%20Capitol%20St%20SE%2C%20Washington%2C%20DC%2020003&dirflg=w">Walk</a></div>
+<details open><summary>If time (2)</summary>
+<div class="opt"><h4>Tune Inn</h4><p class="why">DC’s classic Hill dive, poured since 1947: taxidermy on the walls, Natty Boh, burgers, staffers and cops. ~5 min walk. Open 8am–2am. Cleaned up after a 2011 fire, but still the real thing.</p><button class="addr" type="button" data-copy="331 1/2 Pennsylvania Ave SE, Washington, DC 20003">331½ Pennsylvania Ave SE <span class="hint">tap to copy</span></button><a class="call" href="tel:+12025432725">Call 202-543-2725</a></div>
+<div class="opt"><h4>Capitol Hill Books</h4><p class="why">Three floors of used and rare books in a rowhouse, across from Eastern Market. Hours listed variously as opening 10 or 11:30. <span class="chk">check hours</span></p><button class="addr" type="button" data-copy="657 C St SE, Washington, DC 20003">657 C St SE <span class="hint">tap to copy</span></button></div>
+</details>
+</article>
+
+<div class="leg">↓ Bike ~10 min (~1.5 mi) to Union Market. Decide on the spot; they’re a block apart.</div>
+<article class="stop">
+<div class="top"><span class="time">~1:00</span><h3>Lunch: Yellow or A. Litteri</h3></div>
+<div class="opt"><h4>Yellow</h4><p class="why">Get the <b>lamb pita</b>: Michelin named it one of the best sandwiches in North America. Michael Rafidi’s (Albi) Levantine café; wood-fired pitas, za’atar croissants, its own coffee program. Wed 8–3 for lunch.</p>
+<button class="addr" type="button" data-copy="417 Morse St NE, Washington, DC 20002">417 Morse St NE <span class="hint">tap to copy</span></button>
+<div class="btns"><a class="btn pri" href="https://maps.apple.com/?daddr=417%20Morse%20St%20NE%2C%20Washington%2C%20DC%2020002&dirflg=w">Map</a><a class="btn" href="https://www.google.com/maps/dir/?api=1&amp;destination=417%20Morse%20St%20NE%2C%20Washington%2C%20DC%2020002&amp;travelmode=bicycling">Bike</a><a class="btn" href="https://yellowthecafe.com/union-market">Site</a></div></div>
+<div class="opt"><h4>A. Litteri</h4><p class="why">100-year-old Italian grocery and deli, the one locals name in “best sandwich in DC” arguments. Classic Italian on a hard roll; deli counter at the back. Look for the giant Italian flag. Wed 8–4. <span class="chk">check hours</span></p>
+<button class="addr" type="button" data-copy="517 Morse St NE, Washington, DC 20002">517 Morse St NE <span class="hint">tap to copy</span></button>
+<div class="btns"><a class="btn pri" href="https://maps.apple.com/?daddr=517%20Morse%20St%20NE%2C%20Washington%2C%20DC%2020002&dirflg=w">Map</a><a class="btn" href="https://www.google.com/maps/dir/?api=1&amp;destination=517%20Morse%20St%20NE%2C%20Washington%2C%20DC%2020002&amp;travelmode=bicycling">Bike</a></div><a class="call" href="tel:+12025440184">Call 202-544-0184</a></div>
+</article>
+
+<div class="leg">Afternoon: open</div>
+<article class="stop">
+<div class="top"><span class="time">Maybe</span><h3>National Portrait Gallery</h3></div>
+<p class="why">The draw is <b>Photographic Memory</b>: 100+ portraits from the daguerreotype era to now. Listings disagree on its dates, so check it’s up. Open 11:30–7, so it works late. Bike ~10 min from Union Market. SAAM, in the same building, has the Bicentennial photography show.</p>
+<button class="addr" type="button" data-copy="8th St and F St NW, Washington, DC 20001">8th &amp; F St NW <span class="hint">tap to copy</span></button>
+<div class="btns"><a class="btn pri" href="https://maps.apple.com/?daddr=8th%20St%20and%20F%20St%20NW%2C%20Washington%2C%20DC%2020001&dirflg=w">Map</a><a class="btn" href="https://www.google.com/maps/dir/?api=1&amp;destination=8th%20St%20and%20F%20St%20NW%2C%20Washington%2C%20DC%2020001&amp;travelmode=bicycling">Bike</a><a class="btn" href="https://npg.si.edu/exhibitions">Exhibitions</a></div>
+</article>
+
+<article class="stop">
+<div class="top"><span class="time">~4:30</span><h3>Beers after the Portrait Gallery</h3></div>
+<p class="why">Times are from the Portrait Gallery (Gallery Place station). It’s dark by ~5, so after beers take the <b>Metro home, not the bike</b>. Most dives open late afternoon; check hours.</p>
+<h4>The plan: under 10 min away, direct Metro home</h4>
+<ul class="list">
+<li><b>Ivy and Coney</b> · bike 5 · walk 12 · Metro 1 stop<br>Roof deck, hot dogs, sports on TV. Home: Yellow Line direct from Mt Vernon Sq, ~20 min.<span class="meta"> 1537 7th St NW</span></li>
+<li><b>Stan’s</b> · bike 6 · walk 15<br>1970s downtown basement bar. Home: Blue Line direct from McPherson Sq, ~15 min.<span class="meta"> 1029 Vermont Ave NW</span></li>
+<li><b>Round Robin (Willard)</b> · bike 6 · walk 15<br>Old-Washington hotel bar, not a dive; a beer is fine. On your way to the 14th St Bridge. Home: Blue Line from Metro Center, ~15 min.<span class="meta"> 1401 Pennsylvania Ave NW</span></li>
+<li><b>Off the Record (Hay-Adams)</b> · bike 8 · walk 20<br>Clubby political hotel bar by Lafayette Square. Home: Blue Line, ~15 min.<span class="meta"> 800 16th St NW</span></li>
+</ul>
+<details><summary>More options: medium and big detours</summary>
+<h4>Medium: 10–15 min out, ~30 min home</h4>
+<ul class="list">
+<li><b>Showtime</b> · bike 12–15 · Uber ~10<br>Tiny living-room dive with an owner-curated R&amp;B jukebox; Esquire Best Bars pick. Most character on the list. No close Metro; Uber home ~25 min.<span class="meta"> 113 Rhode Island Ave NW</span></li>
+<li><b>Solly’s</b> · bike 12 · Green Line 3 stops to U St + 5 min walk<br>Laid-back U Street living room. Home ~30 min by Metro with a transfer.<span class="meta"> 1942 11th St NW</span></li>
+<li><b>Tune Inn</b> · bike 10–12<br>If you skipped it at midday. Home: Blue Line from Capitol South, ~20 min.<span class="meta"> 331½ Pennsylvania Ave SE</span></li>
+<li><b>The Pug</b> · bike 10–12 · Uber ~10<br>True H Street dive (broken AC, sketchy bathroom, beloved). Uber home ~25 min.<span class="meta"> 1234 H St NE</span></li>
+</ul>
+<h4>Big detours: 15–25 min out, 30–45 min home (probably skip)</h4>
+<ul class="list">
+<li><b>Grand Duchess</b> · Adams Morgan · bike 15–18 uphill · Uber ~15<br>Stained-glass lamps, good playlists.</li>
+<li><b>Dan’s Cafe</b> · Adams Morgan · same trip<br>Top-ranked true dive, but likely <b>closed Wednesday</b> (older listing: Thu–Sat from 7).</li>
+<li><b>Red Derby · Lyman’s</b> · Columbia Heights · bike 20–25 uphill · Green Line 4 stops + 10 min walk<br>Rooftop, cheap shot-and-beer combos; Lyman’s next door has pinball.</li>
+<li><b>Raven Grill</b> · Mount Pleasant · Green Line + 10 min walk<br>Cash-only, sticky, surly, one of the oldest bars in DC.</li>
+<li><b>Trusty’s</b> · Hill East · bike ~15<br>School-bus bar upstairs, patio. Easier as a midday stop from Peregrine (~0.8 mi).</li>
+<li><b>Dew Drop Inn</b> · Edgewood · bike ~15<br>Live music, themed nights. Easier from Union Market (~1.3 mi).</li>
+</ul>
+</details>
+<h4>Zero detour: back in Crystal City</h4>
+<ul class="list">
+<li><b>Highline RxR</b> · at the end of the bike trail<br>Beer hall, ~40 drafts.</li>
+<li><b>Crystal City Sports Pub</b> · 10 min walk from the hotel<br>Three floors, pool, darts, regulars.</li>
+</ul>
+<p class="meta">Times are rough estimates, not routed. Check the Maps app before you go.</p>
+</article>
+
+<div class="leg">↓ Home: bike ~35 min in daylight, or Yellow Line from Gallery Place ~15 min</div>
+<article class="stop">
+<div class="top"><span class="time">by ~5</span><h3>Ride back to Crystal City</h3></div>
+<p class="why">From the Portrait Gallery or Union Market: west along the Mall, across the <b>14th St Bridge</b> path, south on the Mount Vernon Trail, and exit at the Crystal City connector by Water Park (18th St). Dock there; the hotel is a short walk. Leave by ~4:30 to beat dark. Running late? Yellow Line from Gallery Place to Crystal City is direct.</p>
+<div class="btns"><a class="btn pri" href="https://maps.apple.com/?daddr=Crystal%20City%20Water%20Park%2C%20Arlington%2C%20VA%2022202&dirflg=w">Map home</a><a class="btn" href="https://www.google.com/maps/dir/?api=1&amp;origin=8th%20St%20and%20F%20St%20NW%2C%20Washington%2C%20DC%2020001&amp;destination=Crystal%20City%20Water%20Park%2C%20Arlington%2C%20VA%2022202&amp;travelmode=bicycling&amp;waypoints=Thomas%20Jefferson%20Memorial%2C%20Washington%2C%20DC">Bike home</a><a class="btn" href="https://m.uber.com/ul/?action=setPickup&amp;pickup=my_location">Uber → saved “Hotel”</a></div>
+</article>
+
+<article class="stop">
+<div class="top"><span class="time">Dinner</span><h3>Near the hotel</h3></div>
+<p class="why">Undecided by design. Pick from the Thu–Sat tab.</p>
+</article>
+</section>
+
+<!-- THURSDAY / FRIDAY -->
+<section data-panel="thu" hidden>
+<p class="intro">Ready-alert list, nearest first from the meeting (251 18th St S). <span class="tag g">Group</span> = easy for colleagues you don’t know well. <span class="tag">Solo</span> = comfortable alone at a bar or counter. <span class="tag">Takeout</span> = good for beers in the room.</p>
+
+<h2>What to wear</h2>
+<p class="meta">Full rotation and packing list on the Mon tab.</p>
+<details class="box" open><summary>Thursday · 74° / 64°, 30% showers</summary><ul><li><b>Blazer</b>, <b>white shirt</b>, <b>black jeans</b>, <b>desert boots</b>.</li><li>Warm and muggy: the blazer may come off by afternoon.</li></ul></details>
+<details class="box" open><summary>Friday · 69° / 54°, 75% rain</summary><ul><li><b>Blazer</b>, <b>blue oxford</b>, <b>green chinos</b>, <b>Courtsides</b>.</li><li><b>Umbrella</b>; cashmere doesn’t love rain either. Forgot it? Ask the front desk.</li><li>Friday night: pack, lay out Saturday, early bed, early alarm.</li></ul></details>
+
+
+<details class="box"><summary>Gym, without packing gym shoes</summary><ul>
+<li><b>Hotel gym</b>, with Peloton machines. Open 24 hours.</li>
+<li><b>Gear lending is kits, not clothes.</b> Ask the desk what this hotel has; a band kit means a full workout in the room, barefoot.</li>
+<li><b>Treadmill:</b> an incline walk works fine in the Courtsides. Ask whether the Pelotons have toe cages; if not, skip them.</li>
+<li><b>Outside:</b> the Mount Vernon Trail is 5 min away via the Water Park tunnel (Wednesday’s route). Flat walk with planes overhead.</li>
+</ul></details>
+
+<h2>A block away · 19th Ct S</h2>
+<ul class="list">
+<li><b>Bar Colline</b><span class="tag g">Group</span><span class="tag">Solo</span><br>French bistro from the Chez Billy Sud team: duck confit, sea bass, onion soup, French wines. Bar seats for solo. Dinner Mon–Thu 5–9, Fri 5–10; arrive early Thursday.<br><span class="meta">269 19th Ct S · $31–50 mains</span><div class="btns"><a class="btn" href="https://www.opentable.com/r/bar-colline-arlington">OpenTable</a><a class="btn" href="https://maps.apple.com/?daddr=269%2019th%20Ct%20S%2C%20Arlington%2C%20VA%2022202&dirflg=w">Walk</a></div></li>
+<li><b>Bar Chinois</b><span class="tag g">Group</span><span class="tag">Solo</span><br>Lively Chinese with a French-leaning wine and cocktail list; the DC original is Michelin-listed. Shareable plates make a group easy. Bar for solo.<br><span class="meta">244 19th Ct S</span> <span class="chk">check hours</span><div class="btns"><a class="btn" href="https://www.barchinois.com/national-landing.html">Site</a><a class="btn" href="https://maps.apple.com/?daddr=244%2019th%20Ct%20S%2C%20Arlington%2C%20VA%2022202&dirflg=w">Walk</a></div></li>
+<li><b>Tatte</b><span class="tag">Solo</span><br>Bakery-café for a quick, quiet meal or morning coffee before the meeting.<br><span class="meta">269 19th Ct S</span> <span class="chk">check hours</span></li>
+</ul>
+
+<h2>Crystal Drive · 3–8 min walk</h2>
+<ul class="list">
+<li><b>Water Park food hall</b><span class="tag g">Group</span><span class="tag">Takeout</span><br>Outdoor kiosks where everyone picks their own: Call Your Mother, Duke’s Burgers, Water Bar (sit-down seafood and cocktails) and more. Good Thursday if it’s warm; skip Friday in the rain. Hours vary.<br><span class="meta">1601 Crystal Dr</span> <span class="chk">check hours</span></li>
+<li><b>Surreal</b><span class="tag g">Group</span><br>Enrique Limardo’s (Seven Reasons) playful Americana diner with Latin influences, plus a bakery counter.<br><span class="meta">2117 Crystal Dr</span> <span class="chk">check hours</span></li>
+<li><b>Tacombi</b><span class="tag g">Group</span><span class="tag">Takeout</span><br>Yucatán-style tacos on house-made tortillas. Easy, cheap, fast.<br><span class="meta">1550 Crystal Dr</span> <span class="chk">check hours</span></li>
+<li><b>NiHao</b><span class="tag g">Group</span><br>Peter Chang’s small-plates Chinese. Order a lot and share.<br><span class="meta">1550 Crystal Dr</span> <span class="chk">check it’s still open</span></li>
+<li><b>Highline RxR</b><span class="tag g">Group</span><br>Big second-floor bar: lots of drafts, bar food, board games. The no-pressure colleague option.<br><span class="meta">2010 Crystal Dr</span> <span class="chk">check hours</span></li>
+<li><b>Good Stuff Eatery · We, the Pizza</b><span class="tag g">Group</span><span class="tag">Takeout</span><br>Burgers and shakes; pizza. Both were on the organizers’ list.<br><span class="meta">Crystal City</span></li>
+</ul>
+
+<h2>23rd St “Restaurant Row” · ~10 min walk</h2>
+<ul class="list">
+<li><b>Dolan Uyghur</b><span class="tag g">Group</span><span class="tag">Solo</span><span class="tag">Takeout</span><br>Hand-pulled noodles, kebabs, dumplings, meat pies; 100% halal. Casual sit-down that’s fine alone, and the noodles travel well.<br><span class="meta">320 23rd St S</span> <span class="chk">check hours</span><div class="btns"><a class="btn" href="https://maps.apple.com/?daddr=320%2023rd%20St%20S%2C%20Arlington%2C%20VA%2022202&dirflg=w">Walk</a></div></li>
+<li><b>Beauty Champagne &amp; Sugar</b><span class="tag">Solo</span><br>Wine bar, bottle shop and bistro in a little navy Victorian house, with cheese boards. A good solo nightcap.<br><span class="meta">576 23rd St S</span> <span class="chk">check hours</span></li>
+<li><b>Enjera</b><span class="tag g">Group</span><br>Eritrean and Ethiopian; shared platters suit a group. Daily 11–11.<br><span class="meta">549 23rd St S</span></li>
+<li><b>Portofino</b><span class="tag g">Group</span><br>Family-run Northern Italian, open since 1970. Old-school and reliable.<br><span class="meta">526 23rd St S</span> <span class="chk">check hours</span></li>
+<li><b>Kabob Palace</b><span class="tag">Solo</span><span class="tag">Takeout</span><br>24/7, for when the evening runs long.<br><span class="meta">2315 S Eads St</span></li>
+</ul>
+
+<h2>Zero walk</h2>
+<ul class="list">
+<li><b>The hotel’s own restaurant and bar</b><span class="tag">Solo</span><br>For the night you don’t want to go anywhere.</li>
+</ul>
+
+<h2>A cold beer near the hotel</h2>
+<p class="why">Honestly: no true dives in Crystal City. These are the least corporate.</p>
+<ul class="list">
+<li><b>Crystal City Sports Pub</b>Three floors, pool, darts, and a crew of regulars since 1994. The closest thing to a neighborhood bar here; the kitchen closes early (~10).<br><span class="meta">529 23rd St S · ~10 min walk</span></li>
+<li><b>Highline RxR</b>Upstairs beer hall with ~40 drafts and board games.<br><span class="meta">2010 Crystal Dr · ~5 min walk</span></li>
+<li><b>O’Malley’s Pub</b>Plain Irish pub at the south end of Crystal City.<br><span class="meta">2650 Richmond Hwy</span> <span class="chk">check hours</span></li>
+<li><b>Real Arlington dives</b>Out of walking range: the Forest Inn (Westover) and Galaxy Hut (Clarendon, 28 taps).</li>
+</ul>
+
+<h2>Beers for the room</h2>
+<ul class="list">
+<li><b>CVS</b><br>Usually carries beer in Virginia. Mon–Sat 8–10, Sun 8–9.<br><span class="meta">1550 Crystal Dr</span></li>
+<li><b>Crystal City Wine Shop</b><br>Better beer and wine selection.<br><span class="meta">220 20th St S</span> <span class="chk">check hours</span></li>
+</ul>
+
+<h2>Coffee before the meeting</h2>
+<ul class="list">
+<li><b>Tatte</b><br>A block away; fine. The meeting has coffee anyway.<br><span class="meta">269 19th Ct S</span></li>
+<li><b>Hypergoat, Old Town</b><br>Locals’ underrated pick: in-house roasting, Victoria Arduino Black Eagle. ~10 min Uber, so only if you want a real cup first. Weekdays from 7. <span class="chk">check hours</span><br><span class="meta">215 N Payne St, Alexandria</span></li>
+</ul>
+
+<h2>Saturday · home</h2>
+<div class="flt"><div class="meta">Flight numbers, times and gates are in the United app and Flighty.</div></div>
+
+<details class="box" open id="s-sat-fri"><summary>Friday night</summary><ul>
+<li><b>Book the hotel’s free DCA shuttle</b> at the front desk for the morning you leave. Listings disagree on its early hours, so confirm the time in person.</li>
+<li>Pack everything but the toiletries. Saturday clothes out. Boarding passes in Wallet.</li>
+<li><b>Phone prep for O’Hare:</b> in the Starbucks app, search ORD and favorite the B5 and B9 stores plus any T2/T3 store near the E gates that shows mobile order. Card saved.</li>
+<li>Last beer early; early bed, early alarm.</li>
+</ul></details>
+
+<article class="stop" id="s-sat-dca1">
+<div class="top"><span class="time">Early</span><h3>Hotel → DCA (5 min)</h3></div>
+<ul class="steps">
+<li><b>Shuttle</b> if it’s confirmed: free.</li>
+<li><b>Otherwise Uber vs Lyft:</b> open both when you’re ready and take the cheaper. It’s a 1-mile, few-minute ride, so the gap is usually small. Ask for the <b>Terminal 2</b> departures curb.</li>
+<li>Metro opens at 6am Saturdays and it’s one stop to National Airport, but early weekend trains are sparse. Only if the apps are surging.</li>
+</ul>
+</article>
+
+<div class="leg">↓ Use the <b>Terminal 2 South</b> security checkpoint: closest to United’s B gates.</div>
+<article class="stop" id="s-sat-dca2">
+<div class="top"><span class="time">Airport</span><h3>DCA: breakfast, then your gate</h3></div>
+<ul class="steps">
+<li>Early-morning lines here are usually short. Coffee is fine today: you’re heading west.</li>
+<li><b>On the B-gate pier:</b> Atlas Brew Works shares a space with <b>Zeke’s Coffee</b> (DC roaster) and serves breakfast until 10. Starbucks and a Farmer’s Fridge are there too.</li>
+<li><b>National Hall</b>, the long hall behind security you walk through to reach the B gates: Ben’s Chili Bowl, Dunkin’, Chick-fil-A, Matsutake and more. Order-ahead for some spots at DCAordernow.com.</li>
+<li>Keep it light: coffee + oatmeal is waiting at ORD. Fill the bottle + Nuun.</li>
+<li>Wipe the seat area.</li>
+</ul>
+</article>
+
+<div class="leg">↓ Land at O’Hare. Check the next gate in the United app.</div>
+<article class="stop" id="s-sat-ord">
+<div class="top"><span class="time">Layover</span><h3>O’Hare: Starbucks on the way</h3></div>
+<p class="why"><b>Wheels down, check both gates in the United app, then order.</b> Find your terminals in the table.</p>
+<table class="rot"><thead><tr><th>You land</th><th>You leave</th><th>Starbucks to order from</th></tr></thead><tbody>
+<tr><th>T1 (B/C)</th><td>T2 (E)</td><td><b>B5</b>, right at the walkway (across from B5/B6) to the E gates.</td></tr>
+<tr><th>T1 (B/C)</th><td>T1 (B/C)</td><td><b>B9</b>, by the B↔C tunnel, or B5 if you’re at the low B gates.</td></tr>
+<tr><th>T3 (G)</th><td>T2 (E)</td><td>Whichever T2/T3 store the app shows between the Rotunda and E.</td></tr>
+<tr><th>T3 (G)</th><td>T1 (B/C)</td><td><b>B5</b> on the way in.</td></tr>
+</tbody></table>
+<ul class="steps">
+<li>Coffee + oatmeal. Order the moment you know the gates; pickup is usually ~10 min.</li>
+<li>Under ~20 min to boarding: skip it and use the snack bag.</li>
+<li>Tortas Frontera instead? Only if you have the time and the B11 (T1) or K4 (T3) counter is on your way.</li>
+<li>The United app’s connection screen gives turn-by-turn directions and walk time.</li>
+</ul>
+</article>
+
+<div class="leg">↓ The long leg home</div>
+<article class="stop" id="s-sat-home">
+<div class="top"><span class="time">Land</span><h3>Home</h3></div>
+<ul class="steps">
+<li>Snack bag + water on the long leg. Stand once or twice.</li>
+<li>Get outside in the afternoon light, stay up to your normal bedtime, no long nap. West is the easy direction.</li>
+</ul>
+</article>
+
+<details class="box" open><summary>Saturday · 48° early, 63° high, dry</summary><ul><li><b>Navy MoS pants</b>, <b>desert boots</b>, <b>olive chore coat</b>, fresh shirt. Blazer worn or folded on top.</li></ul></details>
+
+</section>
+
+<!-- MORE -->
+<section data-panel="more" hidden>
+<h2>Art on view Nov 4</h2>
+<ul class="list">
+<li><b>Phillips · Avery, Gottlieb &amp; Rothko: By the Sea</b>82 works from 26 collections on their Cape Ann summers. The strongest pure art show in town; the Rothkos are early work. Through Jan 24.<span class="meta"> 1600 21st St NW, Dupont</span></li>
+<li><b>NGA East · American Icon: The US Flag in Art</b>30+ works: Johns, Parks, Lange, Ringgold’s The Flag Is Bleeding. Through Dec 6. Also Homelands (mezzanine). ~15 min walk from the Folger.</li>
+<li><b>Hirshhorn · sculpture garden reopening + Yoshitomo Nara</b>Garden redone for $68M; three huge new clay-head sculptures by Nara on the West Lawn. Inside: Big Things for Big Rooms (Eliasson, Rashid Johnson, Paul Chan) and Carlotta Corpron photographs.</li>
+<li><b>Asian Art · From the Louvre: Masterpieces of Islamic Art</b>26 works, some never shown in the US; DC is the only venue. Through Jan 18. Also Saodat Ismailova, through Nov 29.</li>
+<li><b>NMAAHC · abstraction</b>Two shows on abstraction in African American art and design: Gates, Gilliam, Leigh, Mehretu, Pindell, Alma Thomas.</li>
+<li><b>SAAM · Much Here Is Beautiful</b>Photography surveys from the US Bicentennial. Through Apr 18.</li>
+<li><b>Women in the Arts · Routed West</b>20th-century African American quilts made in California. Through Jan 17.</li>
+<li><b>Rubell DC</b>New exhibitions opened Nov 2 (titles not announced yet). Wednesday is pay-what-you-wish.<span class="meta"> 65 I St SW</span></li>
+</ul>
+
+<h2>Shopping, honestly</h2>
+<p class="why">Better than it was, but still thin for your taste. What’s actually worth a detour:</p>
+<ul class="list">
+<li><b>Dr. K Vintage</b>DC’s men’s vintage specialist: Americana and Western, varsity jackets, old Levi’s, a wall of vintage lace-ups and boots. Narrow shop, odd hours. <span class="chk">check it’s open</span><span class="meta"> 1534 U St NW</span></li>
+<li><b>Parv’s</b>New, appointment-only vintage tailoring in a tiny Dupont office; 90-minute appointments booked on Instagram. Bold style, and at 48L with 20.5"+ shoulders the odds of a fit are low.</li>
+<li><b>Paul Stuart · J. Press</b>The trad end, both downtown near Dua.</li>
+<li><b>Somewhere</b>Navy Yard. Kapital, Needles, Rick Owens: more runway and Japanese than you usually like.<span class="meta"> 1239 1st St SE</span></li>
+<li><b>Billy Reid · Relish</b>Georgetown, if you end up there. <span class="chk">check</span></li>
+</ul>
+
+<h2>Culture-ish</h2>
+<ul class="list">
+<li><b>Capitol Hill Books</b>Used and rare, by the Folger (see Wed).</li>
+<li><b>Second Story Books</b>Warehouse of used, rare and out-of-print books in Dupont. Pairs with the Phillips.</li>
+<li><b>Smash Records</b>Vinyl plus vintage punk clothing, Adams Morgan.<span class="meta"> 2314 18th St NW</span></li>
+</ul>
+</section>
+
+<footer>Hours come from listings and can drift; “check hours” means unconfirmed. Built Nov 1.<br>
+Sources: <a href="https://www.flydenver.com/dine/shake-shack/">DEN</a> · <a href="https://www.wmata.com/changes">WMATA</a> · <a href="https://www.folger.edu/visit/plan-your-visit">Folger</a> · <a href="https://washington.org/things-to-do-this-november-in-washington-dc">washington.org</a> · <a href="https://www.arlingtonmagazine.com/where-to-eat-and-drink-in-crystal-city/">Arlington Mag</a> · <a href="https://www.opentable.com/r/bar-colline-arlington">OpenTable</a> · <a href="https://washingtonian.com/2026/07/23/semi-secret-dc-menswear-shop-parvs-is-already-a-phenomenon/">Washingtonian</a></footer>
+</div>
+<script>
+(function(){
+  function show(p){
+    document.querySelectorAll('[data-panel]').forEach(function(s){s.hidden=s.getAttribute('data-panel')!==p});
+    document.querySelectorAll('.seg button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.p===p)});
+  }
+  var ymd='';
+  try{var f=new Intl.DateTimeFormat('en-CA',{timeZone:'America/New_York',year:'numeric',month:'2-digit',day:'2-digit'});ymd=f.format(new Date());}catch(e){}
+  var start={'2026-11-01':'mon','2026-11-02':'mon','2026-11-04':'wed','2026-11-05':'thu','2026-11-06':'thu','2026-11-07':'thu'}[ymd]||'tue';
+  var h=(location.hash||'').slice(1); if(['mon','tue','wed','thu','more'].indexOf(h)>-1) start=h;
+  show(start);
+
+  // Next-up strip for travel days
+  // No clock times on the page: tap Next to advance.
+  var DAYS=[{k:'tue',from:'2026-11-03T08:00:00Z',to:'2026-11-04T10:00:00Z',steps:[
+    {tab:'tue',id:'s-tue-home',t:'Breakfast, water + Nuun, coffee now (last by noon)'},
+    {tab:'tue',id:'s-tue-home',t:'Light lunch, then leave for SBA'},
+    {tab:'tue',id:'s-tue-sba',t:'SBA: security, fill bottle + Nuun'},
+    {tab:'tue',id:'s-tue-sba',t:'Board · watch to ET · wipe the seat'},
+    {tab:'tue',id:'s-tue-den',t:'Land DEN → Shake Shack (mezzanine) → next gate'},
+    {tab:'tue',id:'s-tue-den2',t:'Board for Dulles'},
+    {tab:'tue',id:'s-tue-den2',t:'In the air · screens dim, nap OK'},
+    {tab:'tue',id:'s-tue-iad',t:'Land IAD → AeroTrain · order Kabob on the train'},
+    {tab:'tue',id:'s-tue-iad',t:'In the Uber: melatonin'},
+    {tab:'tue',id:'s-tue-kabob',t:'Hotel: wipe-down, eat small'},
+    {tab:'tue',id:'s-tue-kabob',t:'Lights out · alarm 7:30'}
+  ]},{k:'sat',from:'2026-11-07T01:00:00Z',to:'2026-11-08T08:00:00Z',steps:[
+    {tab:'thu',id:'s-sat-fri',t:'Fri: book the shuttle, pack, phone prep'},
+    {tab:'thu',id:'s-sat-fri',t:'Bed · early alarm'},
+    {tab:'thu',id:'s-sat-dca1',t:'Up · check both gates in the United app'},
+    {tab:'thu',id:'s-sat-dca1',t:'Shuttle or Uber/Lyft to DCA Terminal 2'},
+    {tab:'thu',id:'s-sat-dca2',t:'South checkpoint → light breakfast → gate'},
+    {tab:'thu',id:'s-sat-dca2',t:'Board for O’Hare · wipe the seat'},
+    {tab:'thu',id:'s-sat-ord',t:'Land ORD: check both gates, order Starbucks'},
+    {tab:'thu',id:'s-sat-ord',t:'Board for SBA'},
+    {tab:'thu',id:'s-sat-home',t:'In the air · snack bag + water'},
+    {tab:'thu',id:'s-sat-home',t:'Home · afternoon light, normal bedtime'}
+  ]}];
+  var nu=document.getElementById('nextup'), nb=nu.querySelector('.nu-now'), xb=nu.querySelector('.nu-next');
+  function nowMs(){var q=(location.search.match(/[?&]now=([^&]+)/)||[])[1];var d=q?Date.parse(decodeURIComponent(q)):NaN;return isNaN(d)?Date.now():d;}
+  function go(st){if(!st)return;show(st.tab);var el=document.getElementById(st.id);if(!el)return;
+    document.querySelectorAll('.stop.cur').forEach(function(e){e.classList.remove('cur')});
+    if(el.classList.contains('stop'))el.classList.add('cur');
+    if(el.tagName==='DETAILS')el.open=true;
+    el.scrollIntoView({behavior:'smooth',block:'start'});}
+  var cur=null,nxt=null,day=null,NUK='dcguide-nu',pos={};
+  try{pos=JSON.parse(localStorage.getItem(NUK)||'{}')||{}}catch(e){}
+  function tick(){var n=nowMs();day=null;
+    DAYS.forEach(function(d){if(n>=Date.parse(d.from)&&n<=Date.parse(d.to))day=d});
+    if(!day){nu.hidden=true;return false;}
+    var i=Math.min(pos[day.k]||0,day.steps.length-1);
+    cur=day.steps[i];nxt=day.steps[i+1]||null;
+    nu.hidden=false;
+    nb.innerHTML='<small>Now</small>'+cur.t;
+    xb.hidden=!nxt; if(nxt) xb.innerHTML='<small>Next · tap when you get there</small>'+nxt.t;
+    return true;}
+  nb.addEventListener('click',function(){go(cur)}); xb.addEventListener('click',function(){if(!nxt)return;pos[day.k]=(pos[day.k]||0)+1;try{localStorage.setItem(NUK,JSON.stringify(pos))}catch(e){}tick();go(cur)});
+  if(tick()&&!location.hash){ setTimeout(function(){go(cur||nxt)},300); }
+  setInterval(tick,60000);
+  document.querySelectorAll('.seg button').forEach(function(b){b.addEventListener('click',function(){show(b.dataset.p);try{history.replaceState(null,'','#'+b.dataset.p)}catch(e){}window.scrollTo(0,0)})});
+  var KEY='dcguide-ck';var st={};try{st=JSON.parse(localStorage.getItem(KEY)||'{}')||{}}catch(e){}
+  document.querySelectorAll('.ck input').forEach(function(c){c.checked=!!st[c.dataset.k];c.addEventListener('change',function(){st[c.dataset.k]=c.checked;try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}})});
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('[data-copy]'); if(!b) return;
+    var t=b.getAttribute('data-copy');
+    function ok(){var d=document.createElement('div');d.className='toast';d.textContent='Address copied';document.body.appendChild(d);setTimeout(function(){d.remove()},1500)}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,function(){})}
+  });
+})();
+</script>
+<script>
+if('serviceWorker' in navigator && /github\.io$/.test(location.hostname)){
+  window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})});
+}
+</script>
+</body></html>
