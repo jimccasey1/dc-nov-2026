@@ -1,5 +1,5 @@
 // Offline copy of the guide: network first with a 3-second fallback to the cached page, so weak signal never hangs.
-const CACHE = 'dc-nov-v2';
+const CACHE = 'dc-nov-v3';
 const FILES = ['./', 'index.html', 'manifest.webmanifest', 'icon-180.png', 'icon-512.png'];
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(FILES)).then(() => self.skipWaiting()));
